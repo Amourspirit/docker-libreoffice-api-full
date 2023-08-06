@@ -29,6 +29,7 @@ RUN apt-get update -y \
     poppler-utils \
     graphicsmagick \
     tzdata \
+    enchant-2 \
     && add-apt-repository ppa:libreoffice/ppa -y \
     && apt-get update -y \
     && apt-get install -y libreoffice \
@@ -42,6 +43,10 @@ RUN apt-get update -y \
     && fc-cache -f \
     && groupadd -g $GROUP_ID dockdock \
     && useradd --shell /bin/bash -u $USER_ID -g $GROUP_ID -o -c "dockdock base user" -m dockdock
+
+ENV LC_ALL="en_US.UTF-8" \
+    LC_CTYPE="en_US.UTF-8" \
+    LANG="C.UTF-8"
 
 EXPOSE 2002
 
